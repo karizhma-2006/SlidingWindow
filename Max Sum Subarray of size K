@@ -1,0 +1,48 @@
+https://www.geeksforgeeks.org/problems/max-sum-subarray-of-size-k5313/1
+//1.brute force-o(n*k)
+  class Solution {
+  public:
+    int maximumSumSubarray(vector<int>& arr, int k) {
+        // code here
+        int sum,maxsum=-1;
+        for(int i=0;i<=arr.size()-k;i++)
+        {
+            sum=0;
+            for(int j=i;j<i+k;j++)
+            {
+                sum=sum+arr[j];
+            }
+            if(maxsum<sum)
+                maxsum=sum;
+        }
+        return maxsum;
+    }
+};
+
+//2.sliding window-o(n)
+class Solution {
+  public:
+    int maximumSumSubarray(vector<int>& a, int k) {
+        // code here
+       int i=0,j=0,sum=0,maxsum=-1;
+       while(j<a.size())
+       {
+           if(j-i+1<k)
+           {
+                sum=sum+a[j];
+               j++;
+               
+           }
+           else if(j-i+1==k)
+           {
+               sum=sum+a[j];
+               if(maxsum<sum)
+                    maxsum=sum;
+                 sum=sum-a[i];
+               i++;
+               j++;
+           }
+       }
+        return maxsum;
+    }
+};
