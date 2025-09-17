@@ -17,3 +17,29 @@ class Solution {
         return sumend;
     }
 };
+//2.to find start and end index of the max sum subarray
+class Solution {
+  public:
+    int maxSubarraySum(vector<int> &arr) {
+        // Code here
+    int sum=0,max=INT_MIN;
+      int start,anstart,myend;
+    for(int i=0;i<arr.size();i++)
+    {
+        sum=sum+arr[i];
+        if(sum==0)
+            start=i;
+      if(sum>max)
+      {
+          max=sum;
+          anstart=start;
+          myend=i;
+      }
+      if(sum<0)
+      {
+          sum=0;
+      }
+    }
+    return max; 
+    }
+};
