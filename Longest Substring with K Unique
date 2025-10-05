@@ -1,0 +1,35 @@
+https://www.geeksforgeeks.org/problems/longest-k-unique-characters-substring0853/1
+//did by myself
+class Solution {
+  public:
+    int longestKSubstr(string &s, int k) {
+        // code here
+        int i=0,j=0,maxi=-1;
+        unordered_map<char,int>freq;
+        while(j<s.size())
+        {
+            freq[s[j]]++;
+            if(freq.size()<k)
+                j++;
+            else if(freq.size()==k)
+            {
+                maxi=max(maxi,j-i+1);
+                j++;
+            }
+            else if(freq.size()>k)
+            {
+                while(freq.size()>k)
+                {
+                    freq[s[i]]--;
+                     if(freq[s[i]]==0)
+                        freq.erase(s[i]);
+                    i++;
+                    if(freq.size()==k)
+                        maxi=max(maxi,j-i+1);
+                }
+                j++;
+            }
+            }
+            return maxi;
+    }
+};
